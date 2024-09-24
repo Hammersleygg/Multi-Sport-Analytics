@@ -1,0 +1,19 @@
+multi_sport_analytics_dashboard/
+│
+├── data/                     # Stores raw data, API responses, and any CSV files
+│   └── __init__.py           # Optional for making it a Python package
+├── db/                       # Database-related scripts
+│   ├── create_tables.sql      # SQL script to create necessary tables
+│   ├── db_setup.py           # Python script to set up the database and connect to MySQL
+│   └── db_queries.py         # Reusable SQL queries (fetch data, insert data, etc.)
+├── models/                   # Machine learning models and related scripts
+│   ├── train_model.py        # Code for training models (game predictions, recommendations)
+│   ├── ml_utils.py           # Utility functions for data preprocessing and model evaluation
+│   └── saved_models/         # Directory for saving trained models (e.g., Scikit-learn, TensorFlow)
+├── visualizations/           # Data visualization scripts
+│   ├── charts.py             # Functions to generate charts (bar, radar, etc.)
+│   └── plots.py              # Helper functions to create plots (Matplotlib, Plotly, etc.)
+├── dashboard/                # Streamlit or Dash application
+│   ├── app.py                # Main file to run the dashboard
+│   ├── components/           # Optional folder for organizing UI components
+│   └── styles.css            # Optional file if custom CSS
