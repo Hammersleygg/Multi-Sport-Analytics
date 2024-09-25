@@ -10,36 +10,44 @@ def fetch_data_mlb():
     start_year = 2013
     num_years = 10
 
-    # Create an empty DataFrame to store the results
+    # Create an empty list to store DataFrames
     all_data = []
 
-    # Loop through the last ten years
+    # Loop through the specified years
     for i in range(num_years):
         year = start_year + i  # Calculate the current year
-        api_url = f'https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?&env=prod&season={year}&sportId=1&stats=season&group=hitting&gameType=R&limit=25&offset=0&sortStat=onBasePlusSlugging&order=desc'
-        
-        response = requests.get(api_url)
+        for offset in range(0, 100, 25):  # Get 0, 25, 50, 75 as offsets
+            api_url = f'https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?&env=prod&season={year}&sportId=1&stats=season&group=hitting&gameType=R&limit=25&offset={offset}&sortStat=onBasePlusSlugging&order=desc'
+            
+            response = requests.get(api_url)
 
-        if response.status_code == 200:
-            data = response.json()
-            df_mlb = pd.DataFrame(data['stats'])
-            # Append the DataFrame for this year to the list
-            all_data.append(df_mlb)
-        else:
-            print(f"Failed to fetch data for year {year}. Status code: {response.status_code}")
+            if response.status_code == 200:
+                data = response.json()
+                # Check if 'stats' key exists and contains data
+                if 'stats' in data and data['stats']:
+                    df_mlb = pd.DataFrame(data['stats'])
+                    # Append the DataFrame for this year to the list
+                    all_data.append(df_mlb)
+                else:
+                    print(f"No player data returned for year {year} with offset {offset}.")
+            else:
+                print(f"Failed to fetch data for year {year} with offset {offset}. Status code: {response.status_code}")
 
-    # Concatenate all the DataFrames into one
-    final_df = pd.concat(all_data, ignore_index=True)
+    # Check if any data was collected before concatenating
+    if all_data:
+        final_df = pd.concat(all_data, ignore_index=True)
 
-    # Handle missing values
-    if final_df.isnull().values.any():
-        final_df.fillna(0, inplace=True)
+        # Handle missing values
+        if final_df.isnull().values.any():
+            final_df.fillna(0, inplace=True)
 
-    # Save the combined data to a CSV file
-    final_df.to_csv("data/mlb_data.csv", index=False)
+        # Save the combined data to a CSV file
+        final_df.to_csv("data/mlb_data.csv", index=False)
 
-    return final_df
-
+        return final_df
+    else:
+        print("No data collected from the API.")
+        return pd.DataFrame()  # Return 
 
 def fetch_data_nba():
     api_url = 'https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2023-24&SeasonType=Playoffs&StatCategory=PTS'
