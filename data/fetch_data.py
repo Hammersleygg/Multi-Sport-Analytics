@@ -2,9 +2,6 @@
 import requests
 import pandas as pd
 
-import requests
-import pandas as pd
-
 def fetch_data_mlb():
     # Define the starting year and number of years to fetch
     start_year = 2013
@@ -48,9 +45,6 @@ def fetch_data_mlb():
     else:
         print("No data collected from the API.")
         return pd.DataFrame()  # Return 
-
-import requests
-import pandas as pd
 
 def fetch_data_nba(last_n_years=10):
     # Create a list of seasons (e.g., '2023-24', '2022-23', etc.)
@@ -102,14 +96,6 @@ def fetch_data_nba(last_n_years=10):
     
     return final_df
 
-# Example usage
-df_nba = fetch_data_nba()
-
-
-"""
-def fetch_data_nfl():
-    api_url = ''
-"""
 if __name__ == "__main__":
     #fetch_data_mlb()
     fetch_data_nba()

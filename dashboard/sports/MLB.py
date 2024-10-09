@@ -121,7 +121,7 @@ def mlb_stats():
             """, unsafe_allow_html=True)
 
     # Page title
-    st.markdown("<h1 style='text-align: center; color: black;'> MLB Statistics </h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: black;'> MLB Statistics ⚾</h1>", unsafe_allow_html=True)
     
     # Intro Paragraph
     st.markdown(

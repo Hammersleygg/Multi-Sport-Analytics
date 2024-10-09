@@ -34,9 +34,21 @@ def show_home():
     with tab1:
         st.header("Project Overview")
         st.write("""
-        Welcome to the cutting-edge Multi-Sport Analytics Dashboard! This revolutionary platform is designed to transform the way sports enthusiasts, analysts, and professionals interact with sports data. By leveraging advanced analytics and machine learning, we provide unprecedented insights into player performance, team dynamics, and game outcomes across the MLB, NBA, and NFL.
+        Welcome to the cutting-edge Multi-Sport Analytics Dashboard! 
+        This revolutionary platform is designed to transform the way 
+        sports enthusiasts, analysts, and professionals interact with 
+        sports data. By leveraging advanced analytics and machine 
+        learning, I have provided unprecedented insights into player 
+        performance, team dynamics, and game statistics across the MLB,
+        NBA, and NFL.
 
-        Our dashboard goes beyond traditional statistics, offering a holistic view of sports performance that combines historical data with predictive analytics. Whether you're a fantasy sports player looking for an edge, a coach seeking to optimize team strategy, or a sports analyst diving deep into performance metrics, our platform offers the tools and insights you need to stay ahead of the game.
+        My dashboard goes beyond traditional statistics, offering a 
+        holistic view of sports performance that combines historical
+        data with predictive analytics. Whether you're a fantasy 
+        sports player looking for an edge, a coach seeking to optimize 
+        team strategy, or a sports analyst diving deep into performance
+        metrics, our platform offers the tools and insights you need
+        to stay ahead of the game.
         """)
 
     with tab2:
@@ -65,13 +77,13 @@ def show_home():
         Our platform leverages a state-of-the-art tech stack to deliver unparalleled performance and insights:
         """)
         st.json({
-            "Backend": ["Python 3.9+", "MySQL 8.0", "FastAPI"],
+            "Backend": ["Python 3.9+", "MySQL 8.0"],
             "Frontend": ["Streamlit 1.10+", "React for custom components"],
-            "Machine Learning": ["Scikit-learn 1.0+", "TensorFlow 2.6+", "XGBoost 1.5+"],
+            "Machine Learning": ["Scikit-learn 1.0+"],
             "Data Processing": ["Pandas 1.3+", "NumPy 1.21+"],
             "Visualization": ["Plotly 5.3+", "Matplotlib 3.4+", "Seaborn 0.11+"],
             "Data Sources": ["Official MLB, NBA, NFL APIs", "Web scraping for additional insights"],
-            "Deployment": ["Docker", "AWS for scalability"]
+            "Deployment": ["To Be Decided..."]
         })
 
     with tab4:
@@ -93,7 +105,7 @@ def show_home():
 def main():
     # Sidebar 
     with st.sidebar:
-        st.markdown("<h1 style='text-align: center; color: grey;'>Sports Leagues</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center; color: #9C9C9C;'>Sports Leagues</h1>", unsafe_allow_html=True)
         st.sidebar.markdown("---")
         selected = option_menu(
             menu_title=None,
@@ -102,10 +114,10 @@ def main():
             menu_icon="cast",
             default_index=0,
             styles={
-                "container": {"padding": "0!important", "background-color": "#9C9C9C"},
-                "icon": {"color": "#00115C", "font-size": "25px"}, 
-                "nav-link": {"color": "#ecf0f1", "font-size": "16px", "text-align": "left", "margin":"0px", "--hover-color": "#4a69bd"},
-                "nav-link-selected": {"background-color": "#4a69bd"},
+                "container": {"padding": "0!important", "background-color": "#9C9C9C"}, # RRGGBBAA Transparent 
+                "icon": {"color": "#FFFFF", "font-size": "25px"}, 
+                "nav-link": {"color": "#ecf0f1", "font-size": "16px", "text-align": "left", "margin":"0px", "--hover-color": "#8B0000"},
+                "nav-link-selected": {"background-color": "#F00028"},
             }
         )
     
@@ -113,13 +125,13 @@ def main():
     if selected == "Home":
         show_home()
     elif selected == "MLB Stats":
-        st.title("MLB Statistics")
+        # st.title("MLB Statistics")
         MLB.mlb_stats()  # Load MLB stats 
     elif selected == "NBA Stats":
-        st.title("NBA Statistics")
+        # st.title("NBA Statistics")
         NBA.nba_stats() # Load NBA Stats
     elif selected == "NFL Stats":
-        st.title("NFL Statistics")
+        # st.title("NFL Statistics")
         st.write("NFL stats content coming soon!")
 
 if __name__ == "__main__":

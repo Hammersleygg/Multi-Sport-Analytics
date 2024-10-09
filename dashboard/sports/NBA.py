@@ -158,7 +158,7 @@ def nba_stats():
         )
 
     # NBA Title
-    st.markdown("<h1 style='text-align: center; color: black;'>NBA Data 🏀</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: black;'>NBA Statistics 🏀</h1>", unsafe_allow_html=True)
 
     # Intro Paragraph
     st.markdown(
